@@ -11,7 +11,7 @@
 </head>
 <body>
   <!-- Navbar -->
-  <nav class="navbar">
+  <nav class="navbar" id="navbar">
     <div class="nav-container">
       <a href="#" class="logo">Odyssey.</a>
       <div class="nav-menu" id="navMenu">
@@ -66,11 +66,33 @@
         </div>
         <button class="btn btn-primary" onclick="searchDestinations()">Search</button>
       </div>
-    </div>
+        </div>
   </header>
 
-  <!-- Destinations Section -->
-  <section class="destinations" id="destinations">
+    <!-- Stats Bar -->
+  <section class="stats-bar reveal">
+    <div class="stats-container">
+      <div class="stat-item">
+        <div class="stat-number" data-target="15000">15k+</div>
+        <div class="stat-label">Happy Travelers</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" data-target="1200">1.2k+</div>
+        <div class="stat-label">Destinations</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" data-target="4.9">4.9/5</div>
+        <div class="stat-label">Average Rating</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" data-target="10">10+</div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+    </div>
+  </section>
+
+    <!-- Destinations Section -->
+  <section class="destinations reveal" id="destinations">
     <div class="section-title">
       <h2>Trending Destinations</h2>
       <p>Book your ticket to paradise today.</p>
@@ -82,8 +104,8 @@
     </div>
   </section>
 
-  <!-- Features Section -->
-  <section class="features" id="features">
+    <!-- Features Section -->
+  <section class="features reveal" id="features">
     <div class="section-title">
       <h2>Why Travel With Us</h2>
       <p>We make your dream vacations a reality.</p>
@@ -108,7 +130,74 @@
         <div class="icon">📞</div>
         <h3>24/7 Support</h3>
         <p>Our concierge team is always available to help you, anywhere.</p>
+            </div>
+    </div>
+  </section>
+
+    <!-- Testimonials Section -->
+  <section class="testimonials reveal">
+    <div class="section-title">
+      <h2>Voices of Travelers</h2>
+      <p>Stories from those who explored the world with us.</p>
+    </div>
+    <div class="testimonial-grid">
+      <div class="testimonial-card">
+        <div class="quote-icon">“</div>
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">My trip to Kyoto was perfectly organized. The local guide was knowledgeable and the hotel was breathtaking.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">JD</div>
+          <div>
+            <div class="testimonial-name">John Doe</div>
+            <div class="testimonial-role">Adventure Seeker</div>
+          </div>
+        </div>
       </div>
+      <div class="testimonial-card">
+        <div class="quote-icon">“</div>
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">Odyssey made our honeymoon in Santorini a dream come true. Zero stress, all luxury.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">SA</div>
+          <div>
+            <div class="testimonial-name">Sarah Anderson</div>
+            <div class="testimonial-role">Luxury Traveler</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="quote-icon">“</div>
+        <div class="testimonial-stars">★★★★☆</div>
+        <p class="testimonial-text">The Bali package was great value. Loved the flexibility to add my own activities.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">MK</div>
+          <div>
+            <div class="testimonial-name">Michael Knight</div>
+            <div class="testimonial-role">Solo Explorer</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <!-- CTA Section -->
+  <section class="cta-section reveal">
+    <div class="cta-content">
+      <h2>Ready for Your Next Journey?</h2>
+      <p>Join thousands of happy travelers and start planning your dream vacation today.</p>
+      <button class="btn btn-primary" onclick="document.getElementById('destinations').scrollIntoView({ behavior: 'smooth' })">Explore Destinations</button>
+    </div>
+  </section>
+
+    <!-- Newsletter Section -->
+  <section class="newsletter reveal">
+    <div class="newsletter-container">
+      <h3>Stay Inspired</h3>
+      <p>Get travel tips, exclusive deals, and destination inspiration delivered to your inbox.</p>
+      <form class="newsletter-form" onsubmit="event.preventDefault(); showToast('Thanks for subscribing!'); this.reset();">
+        <input type="email" placeholder="Your email address" required>
+        <button type="submit" class="btn btn-primary">Subscribe</button>
+      </form>
     </div>
   </section>
 
@@ -131,11 +220,13 @@
         <a href="contact.html">Contact</a>
         <a href="#" class="placeholder-link">Privacy Policy</a>
       </div>
-    </div>
+        </div>
     <div class="footer-bottom">
       <p>&copy; 2026 Odyssey Travels. All rights reserved.</p>
     </div>
   </footer>
+
+  <button class="scroll-top" id="scrollTopBtn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
 
   <!-- Sign In Modal -->
   <div id="signInModal" class="modal">
@@ -856,12 +947,75 @@
       }
     }
 
-    document.querySelectorAll('a.placeholder-link').forEach(link => {
+        document.querySelectorAll('a.placeholder-link').forEach(link => {
       link.addEventListener('click', event => {
         event.preventDefault();
         handlePlaceholderLink(link.textContent.trim());
       });
     });
+
+    // --- New Minor Changes/Fixes ---
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      const scrollTopBtn = document.getElementById('scrollTopBtn');
+      
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+
+      if (window.scrollY > 500) {
+        scrollTopBtn.classList.add('visible');
+      } else {
+        scrollTopBtn.classList.remove('visible');
+      }
+    });
+
+    // Scroll Reveal implementation
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealOnScroll = () => {
+      for (let i = 0; i < revealElements.length; i++) {
+        const windowHeight = window.innerHeight;
+        const elementTop = revealElements[i].getBoundingClientRect().top;
+        const elementVisible = 150;
+        if (elementTop < windowHeight - elementVisible) {
+          revealElements[i].classList.add('visible');
+        }
+      }
+    };
+    window.addEventListener('scroll', revealOnScroll);
+    revealOnScroll(); // Run once on load
+
+    // Stats counter animation
+    const stats = document.querySelectorAll('.stat-number');
+    const animateStats = () => {
+      stats.forEach(stat => {
+        const target = +stat.getAttribute('data-target');
+        const count = +stat.innerText.replace(/[^0-9.]/g, '');
+        const increment = target / 100;
+
+        if (count < target) {
+          stat.innerText = Math.ceil(count + increment) + (target % 1 === 0 ? '+' : '');
+          if (target === 4.9) stat.innerText = '4.9/5'; // Hardcode for the rating
+          setTimeout(animateStats, 20);
+        } else {
+          stat.innerText = target + (target > 10 ? '+' : (target === 4.9 ? '/5' : '+'));
+        }
+      });
+    };
+    
+    // Trigger stats animation when visible
+    const statsSection = document.querySelector('.stats-bar');
+    const statsObserver = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        animateStats();
+        statsObserver.unobserve(statsSection);
+      }
+    }, { threshold: 0.5 });
+    if (statsSection) statsObserver.observe(statsSection);
   </script>
 </body>
 </html>
